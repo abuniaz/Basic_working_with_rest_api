@@ -35,7 +35,20 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Flutter Rest API Calling'),
       ),
       body: Column(
-        children: [],
+        children: [
+          FutureBuilder(
+            future: getPostApi(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Text('Loading');
+              } else {
+                return ListView.builder(itemBuilder: ((context, index) {
+                  return Text(index.toString());
+                }));
+              }
+            },
+          )
+        ],
       ),
     );
   }
