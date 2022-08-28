@@ -23,7 +23,7 @@ class Postmodel {
   String title;
   String body;
 
-  factory Postmodel.fromJson(Map<String, dynamic> json) => Postmodel(
+  factory Postmodel.fromJson(Map<dynamic, dynamic> json) => Postmodel(
         userId: json["userId"],
         id: json["id"],
         title: json["title"],
