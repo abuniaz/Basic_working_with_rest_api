@@ -36,17 +36,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          FutureBuilder(
-            future: getPostApi(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return const Text('Loading');
-              } else {
-                return ListView.builder(itemBuilder: ((context, index) {
-                  return Text(index.toString());
-                }));
-              }
-            },
+          Expanded(
+            child: FutureBuilder(
+              future: getPostApi(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Text('Loading');
+                } else {
+                  return ListView.builder(
+                      itemCount: postList.length,
+                      itemBuilder: ((context, index) {
+                        return Text(postList[index].title.toString());
+                      }));
+                }
+              },
+            ),
           )
         ],
       ),
