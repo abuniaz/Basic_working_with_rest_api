@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text(postList[index].body.toString()),
+                                  Text(postList[index].title.toString()),
                                 ]),
                           ),
                         );

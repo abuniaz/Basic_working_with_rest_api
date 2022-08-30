@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rest_api_with_null_safety/example_two.dart';
 import 'package:rest_api_with_null_safety/home.dart';
 
 void main() {
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const ExampleTwo(),
     );
   }
 }
+
+class Photos {}
