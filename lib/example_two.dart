@@ -35,7 +35,15 @@ class _ExampleTwoState extends State<ExampleTwo> {
         centerTitle: true,
       ),
       body: Column(
-        children: [],
+        children: [
+          FutureBuilder(builder: (context, snapshot) {
+            return ListView.builder(itemBuilder: ((context, index) {
+              return ListTile(
+                title: Text('Abu Niaz'),
+              );
+            }));
+          })
+        ],
       ),
     );
   }
