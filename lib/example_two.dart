@@ -36,13 +36,19 @@ class _ExampleTwoState extends State<ExampleTwo> {
       ),
       body: Column(
         children: [
-          FutureBuilder(builder: (context, snapshot) {
-            return ListView.builder(itemBuilder: ((context, index) {
-              return ListTile(
-                title: Text('Abu Niaz'),
-              );
-            }));
-          })
+          Expanded(
+            child: FutureBuilder(
+                future: getPhotos(),
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                      itemCount: photosList.length,
+                      itemBuilder: ((context, index) {
+                        return const ListTile(
+                          title: Text('Abu Niaz'),
+                        );
+                      }));
+                }),
+          )
         ],
       ),
     );
