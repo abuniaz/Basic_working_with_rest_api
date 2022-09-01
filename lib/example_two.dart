@@ -39,12 +39,14 @@ class _ExampleTwoState extends State<ExampleTwo> {
           Expanded(
             child: FutureBuilder(
                 future: getPhotos(),
-                builder: (context, snapshot) {
+                builder: (context, AsyncSnapshot<List<Photos>> snapshot) {
                   return ListView.builder(
                       itemCount: photosList.length,
                       itemBuilder: ((context, index) {
-                        return const ListTile(
-                          title: Text('Abu Niaz'),
+                        return ListTile(
+                          leading:
+                              Image.asset(snapshot.data![index].url.toString()),
+                          title: Text(snapshot.data![index].title.toString()),
                         );
                       }));
                 }),
