@@ -18,7 +18,7 @@ class _ExampleTwoState extends State<ExampleTwo> {
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
-        Photos photos = Photos(title: i['title'], url: i['url']);
+        Photos photos = Photos(title: i['title'], url: i['url'], id: i['id']);
         photosList.add(photos);
       }
       return photosList;
@@ -44,8 +44,11 @@ class _ExampleTwoState extends State<ExampleTwo> {
                       itemCount: photosList.length,
                       itemBuilder: ((context, index) {
                         return ListTile(
-                          leading:
-                              Image.asset(snapshot.data![index].url.toString()),
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                snapshot.data![index].url.toString()),
+                          ),
+                          subtitle: Text(snapshot.data![index].id.toString()),
                           title: Text(snapshot.data![index].title.toString()),
                         );
                       }));
@@ -59,6 +62,7 @@ class _ExampleTwoState extends State<ExampleTwo> {
 
 class Photos {
   String title, url;
+  int id;
 
-  Photos({required this.title, required this.url});
+  Photos({required this.title, required this.url, required this.id});
 }
