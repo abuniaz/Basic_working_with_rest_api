@@ -16,6 +16,7 @@ class _ExampleTwoState extends State<ExampleTwo> {
     final response = await http
         .get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
     var data = jsonDecode(response.body.toString());
+    print(data);
     if (response.statusCode == 200) {
       for (Map i in data) {
         Photos photos = Photos(title: i['title'], url: i['url'], id: i['id']);
@@ -48,8 +49,9 @@ class _ExampleTwoState extends State<ExampleTwo> {
                           backgroundImage: NetworkImage(
                               snapshot.data![index].url.toString()),
                         ),
-                        subtitle: Text(snapshot.data![index].id.toString()),
-                        title: Text(snapshot.data![index].title.toString()),
+                        subtitle: Text(snapshot.data![index].title.toString()),
+                        title: Text(
+                            'Notes id: ' + snapshot.data![index].id.toString()),
                       );
                     }),
                   );
