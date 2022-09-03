@@ -127,5 +127,5 @@ class Company {
         "name": name,
         "catchPhrase": catchPhrase,
         "bs": bs,
-      };
+       };
 }
