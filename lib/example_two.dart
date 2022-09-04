@@ -39,23 +39,28 @@ class _ExampleTwoState extends State<ExampleTwo> {
         children: [
           Expanded(
             child: FutureBuilder(
-                future: getPhotos(),
-                builder: (context, AsyncSnapshot<List<Photos>> snapshot) {
-                  return ListView.builder(
-                    itemCount: photosList.length,
-                    itemBuilder: ((context, index) {
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              snapshot.data![index].url.toString()),
+              future: getPhotos(),
+              builder: (context, AsyncSnapshot<List<Photos>> snapshot) {
+                return ListView.builder(
+                  itemCount: photosList.length,
+                  itemBuilder: ((context, index) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          snapshot.data![index].url.toString(),
                         ),
-                        subtitle: Text(snapshot.data![index].title.toString()),
-                        title: Text(
-                            'Notes id: ' + snapshot.data![index].id.toString()),
-                      );
-                    }),
-                  );
-                }),
+                      ),
+                      subtitle: Text(
+                        snapshot.data![index].title.toString(),
+                      ),
+                      title: Text(
+                        'Notes id: ' + snapshot.data![index].id.toString(),
+                      ),
+                    );
+                  }),
+                );
+              },
+            ),
           )
         ],
       ),
