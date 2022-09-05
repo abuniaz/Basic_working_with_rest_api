@@ -19,7 +19,10 @@ class _ExampleThreeState extends State<ExampleThree> {
         await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
-      for (Map i in data) {}
+      for (Map i in data) {
+        print(i['name']);
+        userList.add(UserModel.fromJson(i));
+      }
       return userList;
     } else {
       return userList;
@@ -28,6 +31,25 @@ class _ExampleThreeState extends State<ExampleThree> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Api course'),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+              child: FutureBuilder(
+                  future: getUserApi(),
+                  builder: ((context, AsyncSnapshot<List<UserModel>> snapshot) {
+                    return ListView.builder(itemBuilder: ((context, index) {
+                      return Card(
+                        child: Column(),
+                      );
+                    }));
+                  })))
+        ],
+      ),
+    );
   }
 }

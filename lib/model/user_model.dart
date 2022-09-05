@@ -31,7 +31,7 @@ class UserModel {
   String website;
   Company company;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromJson(Map<dynamic, dynamic> json) => UserModel(
         id: json["id"],
         name: json["name"],
         username: json["username"],
@@ -127,5 +127,5 @@ class Company {
         "name": name,
         "catchPhrase": catchPhrase,
         "bs": bs,
-       };
+      };
 }
