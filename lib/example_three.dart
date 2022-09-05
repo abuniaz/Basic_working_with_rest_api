@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:rest_api_with_null_safety/model/user_model.dart';
@@ -42,14 +43,44 @@ class _ExampleThreeState extends State<ExampleThree> {
               child: FutureBuilder(
                   future: getUserApi(),
                   builder: ((context, AsyncSnapshot<List<UserModel>> snapshot) {
-                    return ListView.builder(itemBuilder: ((context, index) {
-                      return Card(
-                        child: Column(),
-                      );
-                    }));
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      return ListView.builder(
+                          itemCount: userList.length,
+                          itemBuilder: ((context, index) {
+                            return Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    ReusbaleRow(
+                                        title: 'Name',
+                                        value: snapshot.data![index].name
+                                            .toString())
+                                  ],
+                                ),
+                              ),
+                            );
+                          }));
+                    }
                   })))
         ],
       ),
+    );
+  }
+}
+
+class ReusbaleRow extends StatelessWidget {
+  String title, value;
+  ReusbaleRow({Key? key, required this.title, required this.value})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [Text('name'), Text(value)],
     );
   }
 }
