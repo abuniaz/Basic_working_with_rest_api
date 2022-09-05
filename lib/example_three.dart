@@ -57,7 +57,20 @@ class _ExampleThreeState extends State<ExampleThree> {
                                     ReusbaleRow(
                                         title: 'Name',
                                         value: snapshot.data![index].name
-                                            .toString())
+                                            .toString()),
+                                    ReusbaleRow(
+                                        title: 'username',
+                                        value: snapshot.data![index].username
+                                            .toString()),
+                                    ReusbaleRow(
+                                        title: 'Email',
+                                        value: snapshot.data![index].email
+                                            .toString()),
+                                    ReusbaleRow(
+                                        title: 'Address',
+                                        value: snapshot
+                                            .data![index].address.city
+                                            .toString()),
                                   ],
                                 ),
                               ),
@@ -78,9 +91,15 @@ class ReusbaleRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [Text('name'), Text(value)],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title),
+          Text(value),
+        ],
+      ),
     );
   }
 }
