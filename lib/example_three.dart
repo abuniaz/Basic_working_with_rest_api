@@ -40,48 +40,48 @@ class _ExampleThreeState extends State<ExampleThree> {
       body: Column(
         children: [
           Expanded(
-              child: FutureBuilder(
-                  future: getUserApi(),
-                  builder: ((context, AsyncSnapshot<List<UserModel>> snapshot) {
-                    if (!snapshot.hasData) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      return ListView.builder(
-                        itemCount: userList.length,
-                        itemBuilder: ((context, index) {
-                          return Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  ReusbaleRow(
-                                    title: 'Name',
-                                    value:
-                                        snapshot.data![index].name.toString(),
-                                  ),
-                                  ReusbaleRow(
-                                    title: 'username',
-                                    value: snapshot.data![index].username
-                                        .toString(),
-                                  ),
-                                  ReusbaleRow(
-                                    title: 'Email',
-                                    value:
-                                        snapshot.data![index].email.toString(),
-                                  ),
-                                  ReusbaleRow(
-                                    title: 'Address',
-                                    value: snapshot.data![index].address.city
-                                        .toString(),
-                                  ),
-                                ],
+            child: FutureBuilder(
+              future: getUserApi(),
+              builder: ((context, AsyncSnapshot<List<UserModel>> snapshot) {
+                if (!snapshot.hasData) {
+                  return const CircularProgressIndicator();
+                } else {
+                  return ListView.builder(
+                    itemCount: userList.length,
+                    itemBuilder: ((context, index) {
+                      return Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              ReusbaleRow(
+                                title: 'Name',
+                                value: snapshot.data![index].name.toString(),
                               ),
-                            ),
-                          );
-                        }),
+                              ReusbaleRow(
+                                title: 'username',
+                                value:
+                                    snapshot.data![index].username.toString(),
+                              ),
+                              ReusbaleRow(
+                                title: 'Email',
+                                value: snapshot.data![index].email.toString(),
+                              ),
+                              ReusbaleRow(
+                                title: 'Address',
+                                value: snapshot.data![index].address.city
+                                    .toString(),
+                              ),
+                            ],
+                          ),
+                        ),
                       );
-                    }
-                  })))
+                    }),
+                  );
+                }
+              }),
+            ),
+          ),
         ],
       ),
     );
